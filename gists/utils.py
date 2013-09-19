@@ -53,14 +53,17 @@ class GithubFacade(object):
     Although it is a trivial class, it is useful to mock its behavior
     in tests and to encapsulate the 'requests' dependency
     """
+    # Allow setting of a base URL, in the case of a Github Enterprise appliance
+    ENDPOINT = os.getenv('GITHUB_URL', 'https://api.github.com/')
+
     # Endpoints to gists' github API
-    ENDPOINT_LIST = "https://api.github.com/users/%s/gists"
-    ENDPOINT_STARRED = "https://api.github.com/gists/starred"
-    ENDPOINT_GIST = "https://api.github.com/gists/%s"
-    ENDPOINT_CREATE = "https://api.github.com/gists"
-    ENDPOINT_AUTH = "https://api.github.com/authorizations"
-    ENDPOINT_FORK = "https://api.github.com/gists/%s/fork"
-    ENDPOINT_STAR = "https://api.github.com/gists/%s/star"
+    ENDPOINT_LIST    = ENDPOINT + "/users/%s/gists"
+    ENDPOINT_STARRED = ENDPOINT + "/gists/starred"
+    ENDPOINT_GIST    = ENDPOINT + "/gists/%s"
+    ENDPOINT_CREATE  = ENDPOINT + "/gists"
+    ENDPOINT_AUTH    = ENDPOINT + "/authorizations"
+    ENDPOINT_FORK    = ENDPOINT + "/gists/%s/fork"
+    ENDPOINT_STAR    = ENDPOINT + "/gists/%s/star"
 
     # Default content type
     APPLICATION_JSON = "application/json"
